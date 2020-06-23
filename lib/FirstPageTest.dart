@@ -11,7 +11,10 @@ class FirstPageState extends State<FirstPage>{
    return Scaffold(
      appBar: AppBar(
        title: Text('First Page'),
-     )
+     ),
+     body: Center(
+       child: Text("Hello World"),
+   ),
    );
   }
 
