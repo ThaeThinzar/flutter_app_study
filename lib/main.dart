@@ -1,17 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:flutterapp/FirstPageTest.dart';
+import 'package:logger/logger.dart';
 
-import 'NotificationTestPage.dart';
-
+import 'package:timezone/timezone.dart' as tz;
+import 'package:timezone/data/latest.dart' as tz;
 void main() {
+  tz.initializeTimeZones();
+  var locations = tz.timeZoneDatabase.locations;
+  print('location lenght: ${locations.length}'); // => 429
+  print('location first:${locations.keys.first}'); // => "Africa/Abidjan"
+  print('location last:${locations.keys.last}');
+  final logger =  Logger(
+      printer: PrettyPrinter(
+        methodCount: 0,
+        errorMethodCount: 5,
+        lineLength: 50,
+        colors: true,
+        printEmojis: true,
+        printTime: false,
+      )
+  );
+ // logger.i('locale testing :${locations}');
+  logger.v('You don\'t always want to see all of these');
+  logger.d('Logs a debug message');
+  logger.i('Public Function called');
+  logger.w('This might become a problem');
+  logger.e('Something has happened');
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      locale: Locale('ja'),
       title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
