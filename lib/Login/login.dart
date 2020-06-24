@@ -25,7 +25,8 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(
                   height: 200,
                   width: 200,
-                  child: Image.asset('assets/images/welcome.png'),
+                  child: Image.asset('assets/images/welcome.png',color: kShrineBlack,),
+
                 ),
                 SizedBox(height: 16.0),
 
@@ -39,6 +40,7 @@ class _LoginPageState extends State<LoginPage> {
               child: TextField(
                 controller: _usernameController,
                 decoration: InputDecoration(
+
                   filled: true,
                   labelText: 'Username',
                 ),
@@ -62,6 +64,9 @@ class _LoginPageState extends State<LoginPage> {
                 // TODO: Add a beveled rectangular border to CANCEL (103)
                 FlatButton(
                   child: Text('CANCEL'),
+                  shape: BeveledRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(7.0)),
+                  ),
                   onPressed: () {
                     _usernameController.clear();
                     _passwordController.clear();

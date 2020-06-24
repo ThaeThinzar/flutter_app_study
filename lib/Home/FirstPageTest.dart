@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/Home/Model/product.dart';
+import 'package:flutterapp/supporter/asymmetric_view.dart';
 import 'package:intl/intl.dart';
 import 'package:logger/logger.dart';
 
@@ -64,7 +65,9 @@ class FirstPageState extends State<FirstPage>{
   Widget build(BuildContext context) {
    return Scaffold(
      appBar: AppBar(
-       title: Text('Home  Page'),
+       brightness: Brightness.dark,
+       title: Text('TTKS Home page',
+       style: TextStyle(color: Colors.white),),
        leading: IconButton(
          icon: Icon(Icons.menu),
          onPressed: (){
@@ -79,16 +82,17 @@ class FirstPageState extends State<FirstPage>{
            },
          ),
          IconButton(
-           icon: Icon(Icons.tune),
+           icon: Icon(Icons.tune, color: Colors.white,),
          )
        ],
      ),
-     body: GridView.count(crossAxisCount: 2,
+     body:AsymmetricView(products: ProductsRepository.loadProducts(Category.all))
+     /*GridView.count(crossAxisCount: 2,
          padding: EdgeInsets.all(8),
          childAspectRatio: 8.0/9.0,
          children: _buildGridCard(context)
        //<Widget>[
-       /* Card(
+       *//* Card(
             clipBehavior: Clip.antiAlias,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -110,9 +114,9 @@ class FirstPageState extends State<FirstPage>{
                 )
               ],
             ),
-          )*/
+          )*//*
        // ],
-     )
+     )*/
    );
   }
 

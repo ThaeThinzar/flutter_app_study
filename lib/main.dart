@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterapp/supporter/cut_corner_border.dart';
 import 'color.dart';
 import 'file:///D:/FlutterProject/TestForNewPrj/flutter_app/lib/Home/FirstPageTest.dart';
 import 'package:flutterapp/NotificationTestPage.dart';
@@ -38,22 +39,31 @@ class MyApp extends StatelessWidget {
     final ThemeData base = ThemeData.light();
     return base.copyWith(
       accentColor: Brown900,
-      primaryColor: pink100,
+      primaryColor: kShrinePurple,
       buttonTheme: base.buttonTheme.copyWith(
-        buttonColor: pink100,
-        colorScheme: base.colorScheme.copyWith(
-          secondary: Brown900,
-        ),
+        buttonColor: kShrinePurple,
+        textTheme: ButtonTextTheme.primary,
+        colorScheme: ColorScheme.light().copyWith(primary: kShrinePurple)
       ),
       buttonBarTheme: base.buttonBarTheme.copyWith(
         buttonTextTheme: ButtonTextTheme.accent,
+      ),
+      textTheme: _buildShrineTextTheme(base.textTheme),
+      primaryTextTheme: _buildShrineTextTheme(base.primaryTextTheme),
+      accentTextTheme: _buildShrineTextTheme(base.accentTextTheme),
+      primaryIconTheme: base.iconTheme.copyWith(
+          color: SurfaceWhite
+      ),
+      inputDecorationTheme: InputDecorationTheme(
+        border: CutCornersBorder(),
       ),
       scaffoldBackgroundColor: BackgroundWhite,
       cardColor: BackgroundWhite,
       textSelectionColor: pink100,
       errorColor: ErrorRed,
     );
-  }TextTheme _buildShrineTextTheme(TextTheme base) {
+  }
+  TextTheme _buildShrineTextTheme(TextTheme base) {
     return base.copyWith(
       headline: base.headline.copyWith(
         fontWeight: FontWeight.w500,

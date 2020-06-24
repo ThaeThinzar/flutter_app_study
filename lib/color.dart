@@ -11,3 +11,6 @@ const ErrorRed = const Color(0xFFC5032B);
 
 const SurfaceWhite = const Color(0xFFFFFBFA);
 const  BackgroundWhite = Colors.white;
+
+const kShrinePurple = Color(0xFF5D1049);
+const kShrineBlack = Color(0xFF000000);
