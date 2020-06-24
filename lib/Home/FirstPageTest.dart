@@ -39,14 +39,13 @@ class FirstPageState extends State<FirstPage>{
               child: Padding(
                 padding: EdgeInsets.fromLTRB(16.0, 12.0, 16.0, 8.0),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Text(
                       product.name,
-                      style: theme.textTheme.title,
+                      style: TextStyle(fontSize: 12),
                       maxLines: 1,
                     ),
-                    SizedBox(height: 8,),
                     Text(
                       formatter.format(product.price),
                       style: theme.textTheme.bodyText2,

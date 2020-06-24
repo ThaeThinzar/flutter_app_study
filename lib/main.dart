@@ -53,6 +53,23 @@ class MyApp extends StatelessWidget {
       textSelectionColor: pink100,
       errorColor: ErrorRed,
     );
+  }TextTheme _buildShrineTextTheme(TextTheme base) {
+    return base.copyWith(
+      headline: base.headline.copyWith(
+        fontWeight: FontWeight.w500,
+      ),
+      title: base.title.copyWith(
+          fontSize: 18.0
+      ),
+      caption: base.caption.copyWith(
+        fontWeight: FontWeight.w400,
+        fontSize: 14.0,
+      ),
+    ).apply(
+      fontFamily: 'Rubik',
+      displayColor: Brown900,
+      bodyColor: Brown900,
+    );
   }
   // This widget is the root of your application.
   @override
