@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutterapp/FirstPageTest.dart';
+import 'file:///D:/FlutterProject/TestForNewPrj/flutter_app/lib/Home/FirstPageTest.dart';
+import 'package:flutterapp/NotificationTestPage.dart';
 import 'package:logger/logger.dart';
 
 import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
+
+import 'Login/login.dart';
 void main() {
   tz.initializeTimeZones();
   var locations = tz.timeZoneDatabase.locations;
@@ -54,6 +57,19 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: FirstPage(),
+      initialRoute: '/login',
+      onGenerateRoute: _getRoute,
+    );
+  }
+  Route<dynamic> _getRoute(RouteSettings settings) {
+    if (settings.name != '/login') {
+      return null;
+    }
+
+    return MaterialPageRoute<void>(
+      settings: settings,
+      builder: (BuildContext context) => LoginPage(),
+      fullscreenDialog: true,
     );
   }
 }
