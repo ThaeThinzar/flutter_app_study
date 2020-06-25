@@ -33,6 +33,7 @@ dependencies:
   timezone: ^0.5.7
   logger: ^0.9.1
   shrine_images: ^1.1.2
+  badges: ^1.0.0
 
 dev_dependencies:
   flutter_test:

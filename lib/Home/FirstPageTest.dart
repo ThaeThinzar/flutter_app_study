@@ -14,6 +14,7 @@ class FirstPage extends StatefulWidget{
 }
 class FirstPageState extends State<FirstPage>{
   var logger = Logger();
+  int counter = 0;
   List<Card> _buildGridCard(BuildContext context){
     List<Product> products = ProductsRepository.loadProducts(Category.all);
     logger.i('Show product $products');
@@ -64,62 +65,53 @@ class FirstPageState extends State<FirstPage>{
 
   @override
   Widget build(BuildContext context) {
-   return AsymmetricView(products: ProductsRepository.loadProducts(Category.all));
-    /* Scaffold(
+
+   return Scaffold(
      appBar: AppBar(
-       brightness: Brightness.dark,
-       title: Text('TTKS Home page',
-       style: TextStyle(color: Colors.white),),
-       leading: IconButton(
-         icon: Icon(Icons.menu),
-         onPressed: (){
-
-         },
-       ),
+       title: Text('TTKS HOme'),
        actions: <Widget>[
-         IconButton(
-           icon: Icon(Icons.search),
-           onPressed: (){
-
-           },
+         new Stack(
+           children: <Widget>[
+             new IconButton(icon: Icon(Icons.notifications), onPressed: () {
+               setState(() {
+                 counter = 0;
+               });
+             }),
+             counter != 0 ? new Positioned(
+               right: 11,
+               top: 11,
+               child: new Container(
+                 padding: EdgeInsets.all(2),
+                 decoration: new BoxDecoration(
+                   color: Colors.red,
+                   borderRadius: BorderRadius.circular(6),
+                 ),
+                 constraints: BoxConstraints(
+                   minWidth: 14,
+                   minHeight: 14,
+                 ),
+                 child: Text(
+                   '$counter',
+                   style: TextStyle(
+                     color: Colors.white,
+                     fontSize: 8,
+                   ),
+                   textAlign: TextAlign.center,
+                 ),
+               ),
+             ) : new Container()
+           ],
          ),
-         IconButton(
-           icon: Icon(Icons.tune, color: Colors.white,),
-         )
        ],
      ),
-     body:AsymmetricView(products: ProductsRepository.loadProducts(Category.all))
-     *//*GridView.count(crossAxisCount: 2,
-         padding: EdgeInsets.all(8),
-         childAspectRatio: 8.0/9.0,
-         children: _buildGridCard(context)
-       //<Widget>[
-       *//**//* Card(
-            clipBehavior: Clip.antiAlias,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                AspectRatio(
-                  aspectRatio: 18.0 / 11.0,
-                  child: Image.asset('assets/diamond.png'),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(16.0, 12.0, 16.0, 8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text('Title'),
-                      SizedBox(height: 8,),
-                      Text('SecondTitle')
-                    ],
-                  ),
-                )
-              ],
-            ),
-          )*//**//*
-       // ],
-     )*//*
-   );*/
+     body:AsymmetricView(products: ProductsRepository.loadProducts(Category.all)) ,
+     floatingActionButton: FloatingActionButton(onPressed: () {
+       print("Increment Counter$counter");
+       setState(() {
+         counter++;
+       });
+     }, child: Icon(Icons.add),),
+   );
   }
 
 }

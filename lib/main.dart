@@ -13,6 +13,7 @@ import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
 
 import 'Login/login.dart';
+import 'menu/icon_badge.dart';
 void main() {
   tz.initializeTimeZones();
   var locations = tz.timeZoneDatabase.locations;
@@ -93,7 +94,9 @@ class MyApp extends StatelessWidget {
       locale: Locale('ja'),
       title: 'Flutter Demo',
       theme:_buildTheme() ,
-      home: BackDrop(
+        debugShowCheckedModeBanner: false,
+      home: FirstPage());
+     /* BackDrop(
         currentCategory: Category.all,
         frontLayer: FirstPage(),
         backLayer: Container(
@@ -104,7 +107,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/login',
       onGenerateRoute: _getRoute,
-    );
+    );*/
   }
   Route<dynamic> _getRoute(RouteSettings settings) {
     if (settings.name != '/login') {
