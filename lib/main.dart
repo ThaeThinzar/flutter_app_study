@@ -79,8 +79,8 @@ class MyApp extends StatelessWidget {
       ),
     ).apply(
       fontFamily: 'Rubik',
-      displayColor: Colors.white,
-      bodyColor: Colors.white,
+      displayColor: Brown900,
+      bodyColor: Brown900,
     );
   }
   // This widget is the root of your application.
