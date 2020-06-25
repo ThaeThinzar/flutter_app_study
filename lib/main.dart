@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutterapp/Home/Model/product.dart';
+import 'package:flutterapp/backdrop.dart';
 import 'package:flutterapp/supporter/cut_corner_border.dart';
 import 'color.dart';
 import 'file:///D:/FlutterProject/TestForNewPrj/flutter_app/lib/Home/FirstPageTest.dart';
@@ -57,7 +59,7 @@ class MyApp extends StatelessWidget {
       inputDecorationTheme: InputDecorationTheme(
         border: CutCornersBorder(),
       ),
-      scaffoldBackgroundColor: BackgroundWhite,
+      scaffoldBackgroundColor: pink100,
       cardColor: BackgroundWhite,
       textSelectionColor: pink100,
       errorColor: ErrorRed,
@@ -77,8 +79,8 @@ class MyApp extends StatelessWidget {
       ),
     ).apply(
       fontFamily: 'Rubik',
-      displayColor: Brown900,
-      bodyColor: Brown900,
+      displayColor: Colors.white,
+      bodyColor: Colors.white,
     );
   }
   // This widget is the root of your application.
@@ -88,7 +90,15 @@ class MyApp extends StatelessWidget {
       locale: Locale('ja'),
       title: 'Flutter Demo',
       theme:_buildTheme() ,
-      home: FirstPage(),
+      home: BackDrop(
+        currentCategory: Category.all,
+        frontLayer: FirstPage(),
+        backLayer: Container(
+          color: kShrinePurple,
+        ),
+        frontTitle: Text('TTKS HOme'),
+        backTitle: Text('TTKS Menu'),
+      ),
       initialRoute: '/login',
       onGenerateRoute: _getRoute,
     );

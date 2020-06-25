@@ -8,6 +8,7 @@ import 'package:logger/logger.dart';
 import 'Model/product_repo.dart';
 
 class FirstPage extends StatefulWidget{
+  FirstPage();
   @override
   FirstPageState createState() => FirstPageState();
 }
@@ -63,7 +64,8 @@ class FirstPageState extends State<FirstPage>{
 
   @override
   Widget build(BuildContext context) {
-   return Scaffold(
+   return AsymmetricView(products: ProductsRepository.loadProducts(Category.all));
+    /* Scaffold(
      appBar: AppBar(
        brightness: Brightness.dark,
        title: Text('TTKS Home page',
@@ -87,12 +89,12 @@ class FirstPageState extends State<FirstPage>{
        ],
      ),
      body:AsymmetricView(products: ProductsRepository.loadProducts(Category.all))
-     /*GridView.count(crossAxisCount: 2,
+     *//*GridView.count(crossAxisCount: 2,
          padding: EdgeInsets.all(8),
          childAspectRatio: 8.0/9.0,
          children: _buildGridCard(context)
        //<Widget>[
-       *//* Card(
+       *//**//* Card(
             clipBehavior: Clip.antiAlias,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -114,10 +116,10 @@ class FirstPageState extends State<FirstPage>{
                 )
               ],
             ),
-          )*//*
+          )*//**//*
        // ],
-     )*/
-   );
+     )*//*
+   );*/
   }
 
 }
