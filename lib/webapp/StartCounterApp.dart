@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'github_star_counter.dart';
-
+import 'package:flutterapp/webapp/privacy_police.dart';
 class StartCounterApp extends StatefulWidget{
   StartCounterAppState createState()=> StartCounterAppState();
 
@@ -16,7 +16,8 @@ class StartCounterAppState extends State<StartCounterApp>{
         brightness: Brightness.dark
       ),
       routes:{
-        '/':(context)=> HomePage()
+        '/':(context)=> HomePage(),
+        '/privacypolicy': (context)=> PrivacyPolicy(),
       }
     );
   }
@@ -61,7 +62,13 @@ class HomePageState extends State<HomePage>{
                   child: GitHubStarCounter(
                     repositoryName: _repositoryName,
                   )
-                )
+                ),
+                  FlatButton(
+                    color: Colors.transparent,
+                    textColor: Colors.blue,
+                    onPressed: () => Navigator.of(context).pushNamed('/privacypolicy'),
+                    child: Text('Privacy Policy'),
+                  ),
                 ],
               ),
             ),
