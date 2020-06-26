@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterapp/Home/Model/product.dart';
 import 'package:flutterapp/backdrop.dart';
 import 'package:flutterapp/supporter/cut_corner_border.dart';
+import 'package:flutterapp/webapp/StartCounterApp.dart';
 import 'color.dart';
 import 'file:///D:/FlutterProject/TestForNewPrj/flutter_app/lib/Home/FirstPageTest.dart';
 import 'package:flutterapp/NotificationTestPage.dart';
@@ -36,7 +37,7 @@ void main() {
   logger.i('Public Function called');
   logger.w('This might become a problem');
   logger.e('Something has happened');
-  runApp(MyApp());
+  runApp(StartCounterApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -96,6 +97,8 @@ class MyApp extends StatelessWidget {
       theme:_buildTheme() ,
         debugShowCheckedModeBanner: false,
       home: FirstPage());
+
+    //TODO uncomment to work backdrop
      /* BackDrop(
         currentCategory: Category.all,
         frontLayer: FirstPage(),
