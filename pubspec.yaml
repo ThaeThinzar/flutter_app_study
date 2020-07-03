@@ -36,6 +36,8 @@ dependencies:
   logger: ^0.9.1
   shrine_images: ^1.1.2
   badges: ^1.0.0
+  local_auth: ^0.6.2+3
+  get_it: ^1.0.3+2
 
 dev_dependencies:
   flutter_test:

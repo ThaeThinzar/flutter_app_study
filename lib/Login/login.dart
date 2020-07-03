@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutterapp/Home/FirstPageTest.dart';
 import 'package:flutterapp/color.dart';
+import 'package:local_auth/local_auth.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -10,8 +13,69 @@ class _LoginPageState extends State<LoginPage> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
 
+  final LocalAuthentication auth = LocalAuthentication();
+  bool _canCheckBiometrics;
+  List<BiometricType> _availableBiometrics;
+  String _authorized = 'Not Authorized';
+  bool authenticated = false;
   @override
   Widget build(BuildContext context) {
+    Future<void> _checkBiometrics() async {
+      bool canCheckBiometrics;
+      try {
+        canCheckBiometrics = await auth.canCheckBiometrics;
+      } on PlatformException catch (e) {
+        print(e);
+      }
+      if (!mounted) return;
+
+      setState(() {
+        _canCheckBiometrics = canCheckBiometrics;
+      });
+    }
+    Future<void> _getAvailableBiometrics() async {
+      List<BiometricType> availableBiometrics;
+      try {
+        availableBiometrics = await auth.getAvailableBiometrics();
+      } on PlatformException catch (e) {
+        print(e);
+      }
+      if (!mounted) return;
+
+      setState(() {
+        _availableBiometrics = availableBiometrics;
+      });
+    }
+    Future<void> _authenticate() async {
+
+      try {
+        authenticated = await auth.authenticateWithBiometrics(
+            localizedReason: 'Scan your fingerprint to authenticate',
+            useErrorDialogs: true,
+            stickyAuth: false);
+
+      } on PlatformException catch (e) {
+        print(e);
+      }
+      if (!mounted) return;
+
+      setState(() {
+        _authorized = authenticated ? 'Authorized' : 'Not Authorized';
+      });
+    }
+
+    _checkBiometrics();
+    if(_canCheckBiometrics){
+      _getAvailableBiometrics();
+      if(_availableBiometrics != null){
+        _authenticate();
+        if(authenticated){
+          Navigator.push(context, MaterialPageRoute(
+              builder:  (context)=>
+                  FirstPage()));
+        }
+      }
+    }
     return Scaffold(
       body: SafeArea(
         child: ListView(
@@ -80,12 +144,17 @@ class _LoginPageState extends State<LoginPage> {
                     Navigator.pop(context);
                   },
                 ),
+                Text(
+                  'Text to login '
+                ),
               ],
             ),
           ],
         ),
       ),
     );
+
+
   }
 }
 // TODO: Add AccentColorOverride (103)
