@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutterapp/Home/FirebaseHome.dart';
 import 'package:flutterapp/Home/Model/product.dart';
 import 'package:flutterapp/backdrop.dart';
 import 'package:flutterapp/supporter/cut_corner_border.dart';
@@ -97,21 +98,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme:_buildTheme() ,
         debugShowCheckedModeBanner: false,
-      home: LoginPage());
-
-    //TODO uncomment to work backdrop
-     /* BackDrop(
-        currentCategory: Category.all,
-        frontLayer: FirstPage(),
-        backLayer: Container(
-          color: pink100,
-        ),
-        frontTitle: Text('TTKS HOme'),
-        backTitle: Text('TTKS Menu'),
-      ),
-      initialRoute: '/login',
-      onGenerateRoute: _getRoute,
-    );*/
+      home: FireBaseHome(title: 'My FireBase page',));
   }
   Route<dynamic> _getRoute(RouteSettings settings) {
     if (settings.name != '/login') {
