@@ -17,6 +17,7 @@ import 'package:timezone/data/latest.dart' as tz;
 
 import 'Login/login.dart';
 import 'menu/icon_badge.dart';
+import 'multiple_image_post.dart';
 void main() {
   tz.initializeTimeZones();
   var locations = tz.timeZoneDatabase.locations;
@@ -39,7 +40,7 @@ void main() {
   logger.i('Public Function called');
   logger.w('This might become a problem');
   logger.e('Something has happened');
-  runApp(MyApp());
+  runApp(AddPost());
 }
 
 class MyApp extends StatelessWidget {
