@@ -17,6 +17,8 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
+      resizeToAvoidBottomInset: true,
       body: Form(
           key: formKey,
           child: Column(
@@ -24,15 +26,28 @@ class _LoginPageState extends State<LoginPage> {
             children: <Widget>[
               Padding(
                   padding: EdgeInsets.only(left: 25.0, right: 25.0),
-                  child: TextFormField(
-                    keyboardType: TextInputType.phone,
-                    decoration: InputDecoration(hintText: 'Enter phone number'),
-                    onChanged: (val) {
-                      setState(() {
-                        this.phoneNo = val;
-                      });
-                    },
-                  )),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text('What is your phone number?', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 24),),
+                     SizedBox(height: 10,),
+                      TextFormField(
+                          keyboardType: TextInputType.phone,
+                          decoration: InputDecoration(hintText: 'Enter phone number'),
+                          onChanged: (val) {
+                            setState(() {
+                              this.phoneNo = '+959'+val;
+                            });
+                          },
+                        ),
+
+                    ],
+                  )
+              ),
+              codeSent ?
+              SizedBox(height: 150,
+                        width: 150,
+                         child: Image(image: AssetImage('assets/images/mobile_verfi.png')),):Container(),
               codeSent ? Padding(
                   padding: EdgeInsets.only(left: 25.0, right: 25.0),
                   child: TextFormField(
@@ -47,7 +62,7 @@ class _LoginPageState extends State<LoginPage> {
               Padding(
                   padding: EdgeInsets.only(left: 25.0, right: 25.0),
                   child: RaisedButton(
-                      child: Center(child: codeSent ? Text('Login'):Text('Verify')),
+                      child: Center(child: codeSent ? Text('Login'):Text('Next')),
                       onPressed: () {
                         codeSent ? AuthService().signInWithOTP(smsCode, verificationId):verifyPhone(phoneNo);
                       }))

@@ -53,11 +53,10 @@ class MyApp extends StatelessWidget {
   ThemeData _buildTheme(){
     final ThemeData base = ThemeData.light();
     return base.copyWith(
-      accentColor: Brown900,
-      primaryColor: pink100,
+      accentColor: greenDiamond,
+      primaryColor: Colors.white,
       buttonTheme: base.buttonTheme.copyWith(
-        buttonColor: kShrinePurple,
-        textTheme: ButtonTextTheme.primary,
+        buttonColor: Colors.white,
         colorScheme: ColorScheme.light().copyWith(primary: pink100)
       ),
       buttonBarTheme: base.buttonBarTheme.copyWith(
@@ -72,8 +71,8 @@ class MyApp extends StatelessWidget {
       inputDecorationTheme: InputDecorationTheme(
         border: CutCornersBorder(),
       ),
-      scaffoldBackgroundColor: pink100,
-      cardColor: kShrinePurple,
+      scaffoldBackgroundColor: greenDiamond,
+      cardColor: Colors.white,
       textSelectionColor: pink100,
       errorColor: ErrorRed,
     );

@@ -13,4 +13,5 @@ const SurfaceWhite = const Color(0xFFFFFBFA);
 const  BackgroundWhite = Colors.white;
 
 const kShrinePurple = Color(0xFF5D1049);
+const greenDiamond = Color(0xFFB0E767);
 const kShrineBlack = Color(0xFF000000);
