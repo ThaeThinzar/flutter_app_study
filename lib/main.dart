@@ -5,7 +5,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/Home/FirebaseHome.dart';
 import 'package:flutterapp/Home/Model/product.dart';
+
 import 'package:flutterapp/backdrop.dart';
+import 'package:flutterapp/phone_authen/authservice.dart';
+
 import 'package:flutterapp/supporter/cut_corner_border.dart';
 import 'package:flutterapp/webapp/StartCounterApp.dart';
 import 'Home/HomeScreen.dart';
@@ -43,7 +46,7 @@ void main() {
   logger.i('Public Function called');
   logger.w('This might become a problem');
   logger.e('Something has happened');
-  runApp(AddPost());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -103,7 +106,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme:_buildTheme() ,
         debugShowCheckedModeBanner: false,
-      home: MyHomePage(title: 'My FireBase page',));
+      home:AuthService().handleAuth());
   }
   Route<dynamic> _getRoute(RouteSettings settings) {
     if (settings.name != '/login') {
