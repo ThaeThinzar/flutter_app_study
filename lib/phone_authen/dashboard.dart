@@ -15,17 +15,22 @@ class _DashboardPageState extends State<DashboardPage> {
     new AssetImage('assets/images/bridge.jpg'),] ;
   @override
   Widget build(BuildContext context) {
-
+    double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-        body: Container(
-          child: Carousel(
-          boxFit: BoxFit.cover,
-            images: imgList,
-            animationCurve: Curves.fastOutSlowIn,
-            animationDuration: Duration(
-              microseconds: 2000,),
 
-          )
+        body: Center(
+          child: Container(
+              padding: EdgeInsets.all(20.0),
+              height: screenHeight/2,
+              child: Carousel(
+                boxFit: BoxFit.cover,
+                images: imgList,
+                animationCurve: Curves.fastOutSlowIn,
+                animationDuration: Duration(
+                  microseconds: 2000,),
+
+              )
+          ),
         )
       /*Center(
             child: Colum
