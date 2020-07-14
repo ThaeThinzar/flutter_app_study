@@ -1,6 +1,8 @@
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/phone_authen/authservice.dart';
+import 'package:flutterapp/phone_authen/opt_screen.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -18,36 +20,41 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomPadding: false,
-      resizeToAvoidBottomInset: true,
       body: Form(
           key: formKey,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Padding(
-                  padding: EdgeInsets.only(left: 25.0, right: 25.0),
+                  padding: EdgeInsets.only(left: 25.0,top: 60.0, right: 25.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text('What is your phone number?', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 24),),
+                     codeSent?  SizedBox(height: 150,
+                       width: 150,
+                       child: Image(image: AssetImage('assets/images/mobile_verfi.png')),):
+                     Padding(
+                       padding:EdgeInsets.only(top: 60, bottom: 25),
+                       child: Text('What is your phone number?', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 24),),
+                     ),
                      SizedBox(height: 10,),
-                      TextFormField(
-                          keyboardType: TextInputType.phone,
-                          decoration: InputDecoration(hintText: 'Enter phone number'),
-                          onChanged: (val) {
-                            setState(() {
-                              this.phoneNo = '+959'+val;
-                            });
-                          },
-                        ),
-
+                     codeSent? Container():
+                     TextFormField(
+                       keyboardType: TextInputType.phone,
+                       decoration: InputDecoration(hintText: 'Enter phone number'),
+                       onChanged: (val) {
+                         setState(() {
+                           this.phoneNo = val;
+                         });
+                       },
+                     ),
                     ],
                   )
               ),
-              codeSent ?
+              /*codeSent ?
               SizedBox(height: 150,
                         width: 150,
-                         child: Image(image: AssetImage('assets/images/mobile_verfi.png')),):Container(),
+                         child: Image(image: AssetImage('assets/images/mobile_verfi.png')),):Container(),*/
               codeSent ? Padding(
                   padding: EdgeInsets.only(left: 25.0, right: 25.0),
                   child: TextFormField(
@@ -59,6 +66,9 @@ class _LoginPageState extends State<LoginPage> {
                       });
                     },
                   )) : Container(),
+            /* codeSent? Navigator.push(context, MaterialPageRoute(
+               builder: (context)=> OPTScreen(code:codeSent)
+             )):Container(),*/
               Padding(
                   padding: EdgeInsets.only(left: 25.0, right: 25.0),
                   child: RaisedButton(
@@ -70,7 +80,32 @@ class _LoginPageState extends State<LoginPage> {
           )),
     );
   }
-
+  Future<void> _showMyDialog(String message) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return   AlertDialog(
+          title: Text('Invalid Format'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text('Please enter your phone number with your country code'),
+                Text('[Eg.+9598214455]')
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],);
+      },
+    );
+  }
   Future<void> verifyPhone(phoneNo) async {
     final PhoneVerificationCompleted verified = (AuthCredential authResult) {
       AuthService().signIn(authResult);
@@ -78,7 +113,10 @@ class _LoginPageState extends State<LoginPage> {
 
     final PhoneVerificationFailed verificationfailed =
         (AuthException authException) {
+
       print('${authException.message}');
+      _showMyDialog(authException.message);
+
     };
 
     final PhoneCodeSent smsSent = (String verId, [int forceResend]) {

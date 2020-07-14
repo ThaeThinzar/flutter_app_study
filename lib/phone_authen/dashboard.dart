@@ -12,7 +12,7 @@ class _DashboardPageState extends State<DashboardPage> {
     return Scaffold(
         body: Center(
             child: RaisedButton(
-              child: Text('Signout'),
+              child: Text('Sign out'),
               onPressed: () {
                 AuthService().signOut();
               },

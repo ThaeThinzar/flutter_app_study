@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/phone_authen/dashboard.dart';
 import 'package:flutterapp/phone_authen/loginpage.dart';
+import 'package:flutterapp/phone_authen/opt_screen.dart';
 
 class AuthService {
   //Handles Auth

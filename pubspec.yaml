@@ -50,6 +50,7 @@ dependencies:
 
   multi_image_picker: ^4.6.7
   mock_data: ^1.2.6
+  country_code_picker: ^1.4.0
 
 
 dev_dependencies:
