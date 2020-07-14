@@ -13,7 +13,7 @@ class AuthService {
           if (snapshot.hasData) {
             return DashboardPage();
           } else {
-            return LoginPage();
+            return DashboardPage();
           }
         });
   }

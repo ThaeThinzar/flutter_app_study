@@ -51,6 +51,8 @@ dependencies:
   multi_image_picker: ^4.6.7
   mock_data: ^1.2.6
   country_code_picker: ^1.4.0
+  carousel_slider: ^2.2.1
+
 
 
 dev_dependencies:
@@ -70,6 +72,9 @@ flutter:
   assets:
     - assets/images/welcome.png
     - assets/images/mobile_verfi.png
+    - assets/images/bagan.jpg
+    - assets/images/baganover.jpg
+    - assets/images/bridge.jpg
     # TODO: Add slanted menu asset (104)
     - packages/shrine_images/0-0.jpg
     - packages/shrine_images/1-0.jpg
