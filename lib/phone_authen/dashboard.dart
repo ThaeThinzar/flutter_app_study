@@ -1,3 +1,4 @@
+import 'package:carousel_pro/carousel_pro.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/phone_authen/authservice.dart';
@@ -17,14 +18,14 @@ class _DashboardPageState extends State<DashboardPage> {
 
     return Scaffold(
         body: Container(
-          child: CarouselSlider(
-            options: CarouselOptions(),
-            items: imgList.map((item)=>Container(
-              child: Center(
-                  child: Image(
-                  image: item, width: 200,height: 150,fit: BoxFit.cover,),),
-            )).toList(),
-          ),
+          child: Carousel(
+          boxFit: BoxFit.cover,
+            images: imgList,
+            animationCurve: Curves.fastOutSlowIn,
+            animationDuration: Duration(
+              microseconds: 2000,),
+
+          )
         )
       /*Center(
             child: Colum

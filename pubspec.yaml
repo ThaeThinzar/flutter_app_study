@@ -52,6 +52,7 @@ dependencies:
   mock_data: ^1.2.6
   country_code_picker: ^1.4.0
   carousel_slider: ^2.2.1
+  carousel_pro: ^1.0.0
 
 
 
